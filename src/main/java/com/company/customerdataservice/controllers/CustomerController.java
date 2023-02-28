@@ -19,28 +19,28 @@ public class CustomerController {
     //Create a new customer record.
     @PostMapping("/customer")
     @ResponseStatus(HttpStatus.CREATED)
-    public Customer createCustomer(@RequestBody Customer customer){ //works
+    public Customer createCustomer(@RequestBody Customer customer){
         return repo.save(customer);
     }
 
     //Update an existing customer record.
     @PutMapping("/customer")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateCustomer(@RequestBody Customer customer){  //works but you have to pass an id along with the whole object
+    public void updateCustomer(@RequestBody Customer customer){  
         repo.save(customer);
     }
 
     //Delete an existing customer record.
     @DeleteMapping("/customer/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteCustomer(@PathVariable int id){ //works but you have to pass an id along with the whole object
+    public void deleteCustomer(@PathVariable int id){ 
         repo.deleteById(id);
     }
 
     //Find a customer record by id.
     @GetMapping("/customer/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Customer getCustomerByid(@PathVariable int id){ //works
+    public Customer getCustomerByid(@PathVariable int id){ 
 
         Optional<Customer> returnVal = repo.findById(id); // The find by id method returns an optional object
         if (returnVal.isPresent()) {
@@ -53,7 +53,7 @@ public class CustomerController {
     //Find customer records by state.
     @GetMapping("/customer/state/{state}")
     @ResponseStatus(HttpStatus.OK)
-    public List<Customer> findCustomersByState(@PathVariable String state){ // works
+    public List<Customer> findCustomersByState(@PathVariable String state){
         return repo.findAllByState(state);
     }
 
